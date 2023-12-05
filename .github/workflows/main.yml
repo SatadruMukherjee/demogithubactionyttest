@@ -1,8 +1,14 @@
-name: my_first_github_action
+name: second_github_action
 on: [push]
 jobs:
-  run-shell-commands:
+  aws_cp:
     runs-on: ubuntu-latest
     steps:
-      - name: echo a string
-        run: echo "Hello"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIA4ASLMUJL554QLETU
+          aws-secret-access-key: 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
+          aws-region: us-east-1
+      - name: Upload to s3
+        run: aws s3 cp ./Capture2.PNG s3://githubactionytdemotet
