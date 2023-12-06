@@ -1,16 +1,26 @@
-name: glue_deployment
+name: lambda_layer_test
 on: [push]
-
 jobs:
   aws_cp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: ssh into ec2 & deploy the code
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          SOURCE: "./"
-          REMOTE_HOST: "ec2-user@ec2-54-221-140-186.compute-1.amazonaws.com"
-          REMOTE_USER: "ec2-user"
-          TARGET: "/home/ec2-user/demogithubactionyttest"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIA4ASLMUJL3LCBXNAL
+          aws-secret-access-key: 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
+          aws-region: us-east-1
+      -  name: Creating deployment zip
+         run: |
+           sudo apt install zip
+           mkdir -p deployment_zip 
+           pip install -r snowflake-connector-python -t ./deployment_zip
+           cp ./snowflake_lambda_code.py  ./deployment_zip
+           cd ./deployment_zip
+           zip -r lambda_zip.zip *
+      - name: Upload to s3
+        run: |
+          cd ./deployment_zip
+          aws s3 cp ./deployment_zip/lambda_zip.zip s3://normaldatapoint
+          aws lambda update-fucntion-code --function-name snowflake_lambda_cicd --zip-file s3://normaldatapoint/lambda_zip.zip
