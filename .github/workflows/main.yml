@@ -1,8 +1,5 @@
 name: glue_deployment
 on: [push]
-env:
-  super_secret: ${{ secrets.SSH_PRIVATE_KEY }} 
-  
 jobs:
   aws_cp:
     runs-on: ubuntu-latest
@@ -10,4 +7,4 @@ jobs:
       - uses: actions/checkout@v4
       - name: ssh into ec2 & deploy the code
         run: |
-          echo $super_secret
+          echo ${{ secrets.PRIVATE_KEY }} 
