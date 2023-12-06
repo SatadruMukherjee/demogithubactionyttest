@@ -9,8 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: ssh into ec2 & deploy the code
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 400 private_key	
-          ssh -i private_key ec2-user@ec2-54-221-140-186.compute-1.amazonaws.com
-          cd /home/ec2-user/demogithubactionyttest
-          git pull
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "./"
+          REMOTE_HOST: "ec2-user@ec2-54-221-140-186.compute-1.amazonaws.com"
+          REMOTE_USER: "ec2-user"
+          TARGET: "/home/ec2-user/demogithubactionyttest"
