@@ -18,7 +18,7 @@ jobs:
            pip install snowflake-connector-python -t ./deployment_zip
            cp ./snowflake_lambda_code.py  ./deployment_zip
            cd ./deployment_zip
-           zip -r lambda_zip.zip *
+           zip -r ./deployment_zip/lambda_zip.zip *
       - name: Upload to s3
         run: |
           cd ./deployment_zip
