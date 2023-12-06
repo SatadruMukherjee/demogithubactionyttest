@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     run_query(conn,statement_1)
     run_query(conn,statement3)
     run_query(conn,statement4)
-    sql_query_table_creation = "CREATE  TABLE if not exists test_table(col1 integer, col2 string,col3 timestamp default current_timestamp())"
+    sql_query_table_creation = "CREATE  TABLE if not exists test_table123(col1 integer, col2 string,col3 timestamp default current_timestamp())"
     run_query(conn, sql_query_table_creation);
-    sql_query_data_ingestion="INSERT INTO test_table(col1, col2) VALUES    (123, 'test string1'), (456, 'test string2')"
+    sql_query_data_ingestion="INSERT INTO test_table123(col1, col2) VALUES    (123, 'test string1'), (456, 'test string2')"
     run_query(conn, sql_query_data_ingestion);
