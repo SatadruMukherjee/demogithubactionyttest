@@ -20,4 +20,4 @@ jobs:
            zip -r ./lambda_zip.zip ./deployment_zip
       - name: Upload to s3
         run: |
-          aws lambda update-function-code --function-name snowflake_lambda_cicd --zip-file ./lambda_zip.zip
+          aws lambda update-function-code --function-name snowflake_lambda_cicd --zip-file fileb://./lambda_zip.zip
