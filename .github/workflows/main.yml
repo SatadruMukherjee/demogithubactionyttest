@@ -1,7 +1,7 @@
 name: glue_deployment
 on: [push]
 env:
-  super_secret: ${{ secrets.PRIVATE_KEY }} 
+  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }} 
   
 jobs:
   aws_cp:
@@ -10,4 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: ssh into ec2 & deploy the code
         run: |
-          echo $super_secret
+          echo "$PRIVATE_KEY" > private_key && chmod 400 private_key	
+          ssh -i private_key ec2-user@ec2-54-221-140-186.compute-1.amazonaws.com
+          cd /home/ec2-user/demogithubactionyttest
+          git pull
