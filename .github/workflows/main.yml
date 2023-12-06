@@ -14,7 +14,7 @@ jobs:
       -  name: Creating deployment zip
          run: |
            sudo apt install zip
-           mkdir -p deployment_zip 
+           mkdir -p ./deployment_zip 
            pip install snowflake-connector-python -t ./deployment_zip
            cp ./snowflake_lambda_code.py  ./deployment_zip
            cd ./deployment_zip
