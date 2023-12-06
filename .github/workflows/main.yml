@@ -17,10 +17,8 @@ jobs:
            mkdir -p ./deployment_zip 
            pip install snowflake-connector-python -t ./deployment_zip
            cp ./snowflake_lambda_code.py  ./deployment_zip
-           cd ./deployment_zip
-           zip -r ./deployment_zip/lambda_zip.zip ./deployment_zip
+           zip -r ./lambda_zip.zip ./deployment_zip
       - name: Upload to s3
         run: |
-          cd ./deployment_zip
-          aws s3 cp ./deployment_zip/lambda_zip.zip s3://normaldatapoint
+          aws s3 cp ./lambda_zip.zip s3://normaldatapoint
           aws lambda update-fucntion-code --function-name snowflake_lambda_cicd --zip-file s3://normaldatapoint/lambda_zip.zip
