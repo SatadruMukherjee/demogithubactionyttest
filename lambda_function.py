@@ -1,4 +1,5 @@
 import snowflake.connector as sf
+import os
 
 def run_query(conn, query):
     cursor = conn.cursor()
@@ -6,9 +7,9 @@ def run_query(conn, query):
     cursor.close()
 
 def lambda_handler(event, context):
-    user="Satadru"
-    password="Sattu12345@"
-    account="iy56276.us-east-2.aws";
+    user=os.environ['user']
+    password=os.environ['password']
+    account=os.environ['account']
     database="RAMU"
     warehouse="COMPUTE_WH"
     schema="PUBLIC"
