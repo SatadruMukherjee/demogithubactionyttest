@@ -1,8 +1,6 @@
 name: glue_deployment
 on: [push]
-env:
-  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }} 
-  
+
 jobs:
   aws_cp:
     runs-on: ubuntu-latest
@@ -11,7 +9,7 @@ jobs:
       - name: ssh into ec2 & deploy the code
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           SOURCE: "./"
           REMOTE_HOST: "ec2-user@ec2-54-221-140-186.compute-1.amazonaws.com"
           REMOTE_USER: "ec2-user"
