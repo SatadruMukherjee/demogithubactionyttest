@@ -1,1 +1,0 @@
-INSERT INTO test_table123(col1, col2) VALUES    (1234, 'test string1'), (4567, 'test string2');
