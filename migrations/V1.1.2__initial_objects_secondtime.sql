@@ -1,0 +1,2 @@
+CREATE  TABLE if not exists demoytcicd.public.test_table1234(col1 integer, col2 string,col3 timestamp default current_timestamp());
+INSERT INTO demoytcicd.public.test_table1234(col1, col2) VALUES    (12334, 'test2 string1'), (45677, 'test2 string2');
