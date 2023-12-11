@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main  # change this to your main branch
+      - main
 
 jobs:
   deploy:
@@ -17,6 +17,9 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Add EC2 host to known hosts
+      run: ssh-keyscan -H 54.172.86.2 >> ~/.ssh/known_hosts
 
     - name: Deploy to EC2
       run: |
