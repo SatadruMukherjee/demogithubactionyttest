@@ -7,7 +7,6 @@ jobs:
       - name: Configure AWS credentials
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: "C06ATACAXD1"
           payload: |
             {
             "text": "Deployment started (In Progress)",
@@ -26,4 +25,4 @@ jobs:
             ]
             }
         env:
-          SLACK_BOT_TOKEN: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
