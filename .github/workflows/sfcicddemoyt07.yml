@@ -1,16 +1,28 @@
-name: glue_deployment
+name: second_github_action
 on: [push]
 jobs:
   aws_cp:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: slackapi/slack-github-action@v1.24.0
         with:
-          aws-access-key-id: AKIA4ASLMUJL675OMY4U
-          aws-secret-access-key: 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
-          aws-region: us-east-1
-      - name: Upload the Glue code to s3
-        run: |
-          aws s3 cp ./csv_to_parquet.py s3://aws-glue-assets-825865577047-us-east-1/scripts/
+          payload: |
+            {
+            "text": "Deployment started (In Progress)",
+            "attachments": [
+            {
+            "pretext": "Deployment started",
+            "color": "dbab09",
+            "fields": [
+            {
+            "title": "Status",
+            "short": true,
+            "value": "In Progress"
+            }
+            ]
+            }
+            ]
+            }
+        env:
+          SLACK_BOT_TOKEN: https://hooks.slack.com/services/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
