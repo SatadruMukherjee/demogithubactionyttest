@@ -9,20 +9,7 @@ jobs:
         with:
           payload: |
             {
-            "text": "Deployment started (In Progress)",
-            "attachments": [
-            {
-            "pretext": "Deployment started",
-            "color": "dbab09",
-            "fields": [
-            {
-            "title": "Status",
-            "short": true,
-            "value": "In Progress"
-            }
-            ]
-            }
-            ]
+            "text": "Git Push Done in demogithubactionyttest branch"
             }
         env:
           SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
