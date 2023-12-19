@@ -1,15 +1,8 @@
-name: second_github_action
+name: my_first_github_action
 on: [push]
 jobs:
-  aws_cp:
+  run-shell-commands:
     runs-on: ubuntu-latest
     steps:
-      - name: Configure AWS credentials
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          payload: |
-            {
-            "text": "Git Push Done in demogithubactionyttest branch"
-            }
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+      - name: echo a string
+        run: echo "Hello"
