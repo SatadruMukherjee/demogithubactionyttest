@@ -1,0 +1,34 @@
+config:
+  target: https://www.hccexplorer.com
+  http:
+    timeout: 15
+  phases:
+    - name: high_traffic
+      duration: 1m
+      arrivalRate: 15
+    - name: stress
+      duration: 2m
+      arrivalRate: 10
+  payload:
+    path: /home/ubuntu/extarcted_data_for_testing30k.csv
+    order: sequence           # default: random
+    loadAll: true             
+    skipHeader: true          # default: false  
+    delimiter: ","            # default: ,
+    skipEmptyLines: true      # default: true
+    fields:
+      - "dos_year"
+      - "drf"
+      - "dx_hcc"
+      - "search"
+
+scenarios:
+- name: testhcc
+  flow:
+  - post:
+      url: /api/member
+      headers:
+        Content-Type: application/json
+      json:
+        dos_year: "{{ dos_year }}"
+        condition_list: ["{{ search }}"] 
