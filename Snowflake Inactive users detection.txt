@@ -1,0 +1,14 @@
+
+
+--base query
+show users;
+--Users , whose account was created more than 60 days before but never logged in
+select * from table(result_scan(LAST_QUERY_ID())) where "last_success_login" is null and datediff('day',"created_on",current_date)>60;
+
+--base query
+show users;
+--Users , who has logged in long back
+select * from table(result_scan(LAST_QUERY_ID())) where datediff('day',"last_success_login",current_date)>1;
+
+--Disable user access
+alter user EMAIL_TEST_USER set disabled=true;
