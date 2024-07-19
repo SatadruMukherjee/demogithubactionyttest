@@ -9,8 +9,8 @@ empty_field_as_null = true;
 
 --create the external stage
 create or replace stage demoytcicd.public.Snow_stage url="s3://normaldatapoint/" 
-credentials=(aws_key_id='AKIA4ASLMUJLT4BUQD3B'
-aws_secret_key='VDDcs71tVAjyqvcrE6cUJnf0Hfo/Ikis0KsPQ58y')
+credentials=(aws_key_id=''
+aws_secret_key='')
 file_format = my_csv_format;
 
 copy into demoytcicd.public.sample_test123 from 
